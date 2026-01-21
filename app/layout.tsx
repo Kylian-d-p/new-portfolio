@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jean Dupont | Développeur Full-Stack",
-  description: "Portfolio de Jean Dupont, développeur web spécialisé en React, Next.js et TypeScript. Découvrez mes projets et mon expertise.",
+  title: "Kylian Dupouy Peron | Développeur Full-Stack",
+  description:
+    "Portfolio de Kylian Dupouy Peron, développeur web spécialisé en React, Next.js et TypeScript. Découvrez mes projets et mon expertise.",
   keywords: ["développeur", "web", "React", "Next.js", "TypeScript", "portfolio"],
 };
 
