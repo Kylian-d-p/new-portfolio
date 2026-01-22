@@ -101,8 +101,8 @@ export const experiences: Experience[] = [
   },
   {
     id: "2",
-    title: "Développeur Web",
-    company: "Développeur Web Freelance",
+    title: "Développeur Web Freelance",
+    company: "GSCode",
     period: "2025",
     description:
       " Développement complet d'une solution pour la génération de QR Codes conformes à une nouvelle réglementation européenne. L'application permet aux utilisateurs de créer, personnaliser et gérer des QR Codes dynamiques avec des options avancées de suivi et d'analyse.",
@@ -111,9 +111,9 @@ export const experiences: Experience[] = [
   {
     id: "3",
     title: "Développeur Web Freelance",
-    company: "GSCode",
+    company: "Weespin",
     period: "2024",
-    description: "Développement complet d'une solution pour la génération de QR Codes conformes à une nouvelle réglementation européenne",
+    description: "Développement d'une plateforme permettant aux commerces de gagner des avis Google en échange de cadeaux offerts aux clients.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Stripe"],
   },
 ];
