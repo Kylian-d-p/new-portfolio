@@ -15,135 +15,237 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-50">
+    <div className="min-h-screen">
       <Header />
 
       <main>
         {/* Hero Section */}
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative overflow-hidden">
+          {/* Animated background elements */}
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl animate-float" />
+          <div
+            className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float"
+            style={{ animationDelay: "1s" }}
+          />
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center relative z-10"
           >
-            <div className="mb-8 flex justify-center">
-              <Image src={personalInfo.avatar} alt={personalInfo.name} width={120} height={120} className="rounded-full border-4 border-slate-200" />
-            </div>
+            <motion.div className="mb-8 flex justify-center" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
+              <div className="relative">
+                <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-blue-500 rounded-full blur-xl opacity-50 animate-pulse-glow" />
+                <Image
+                  src={personalInfo.avatar}
+                  alt={personalInfo.name}
+                  width={120}
+                  height={120}
+                  className="rounded-full border-4 border-blue-400/30 shadow-2xl shadow-blue-900/50 relative z-10"
+                />
+              </div>
+            </motion.div>
 
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4">{personalInfo.name}</h1>
-            <p className="text-xl md:text-2xl text-slate-600 mb-6">{personalInfo.title}</p>
-            <p className="text-lg text-slate-500 mb-8 max-w-2xl mx-auto">{personalInfo.tagline}</p>
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold mb-4 text-blue-400"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              {personalInfo.name}
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl text-blue-200 mb-6 font-semibold"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              {personalInfo.title}
+            </motion.p>
+            <motion.p
+              className="text-lg text-blue-300/80 mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              {personalInfo.tagline}
+            </motion.p>
 
-            <Link href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer" download>
-              <Button size="lg" className="gap-2" variant={"outline"}>
-                <Download className="w-4 h-4" />
-                Télécharger mon CV
-              </Button>
-            </Link>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Link href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer" download>
+                <Button size="lg" className="gap-2 bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-900/50">
+                  <Download className="w-4 h-4" />
+                  Télécharger mon CV
+                </Button>
+              </Link>
+            </motion.div>
           </motion.div>
         </section>
 
         {/* About & Stack Section - Bento Grid */}
-        <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl" />
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">À propos</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-blue-400">À propos</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {/* Bio Card - Spans 2 columns */}
-              <Card className="md:col-span-2">
-                <CardHeader>
-                  <CardTitle>Qui suis-je ?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-600 leading-relaxed">{personalInfo.bio}</p>
-                </CardContent>
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ y: -5 }}
+              >
+                <Card className="md:col-span-2 card-shine glow-border border-2 border-blue-800/50 hover:border-blue-600/50 transition-all duration-500 bg-slate-900/50">
+                  <CardHeader>
+                    <CardTitle className="text-blue-100">Qui suis-je ?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-blue-200/80 leading-relaxed">{personalInfo.bio}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
               {/* Frontend Card */}
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <Code2 className="w-5 h-5 text-slate-600" />
-                    <CardTitle>Front-End</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {getTechnologiesByCategory("frontend").map((tech) => (
-                      <Badge key={tech.name} variant="secondary">
-                        {tech.name}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <Card className="card-shine glow-border border-2 border-blue-800/50 hover:border-blue-600/50 transition-all duration-500 h-full bg-slate-900/50">
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <Code2 className="w-5 h-5 text-blue-400" />
+                      <CardTitle className="text-blue-100">Front-End</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {getTechnologiesByCategory("frontend").map((tech) => (
+                        <Badge
+                          key={tech.name}
+                          variant="secondary"
+                          className="bg-linear-to-r from-blue-900/60 to-blue-800/60 text-blue-200 hover:from-blue-800/80 hover:to-blue-700/80 transition-all duration-300 border border-blue-700/30"
+                        >
+                          {tech.name}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
               {/* Backend Card */}
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <Database className="w-5 h-5 text-slate-600" />
-                    <CardTitle>Back-End</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {getTechnologiesByCategory("backend").map((tech) => (
-                      <Badge key={tech.name} variant="secondary">
-                        {tech.name}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                whileHover={{ y: -5 }}
+              >
+                <Card className="card-shine glow-border border-2 border-blue-800/50 hover:border-blue-600/50 transition-all duration-500 h-full bg-slate-900/50">
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <Database className="w-5 h-5 text-blue-400" />
+                      <CardTitle className="text-blue-100">Back-End</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {getTechnologiesByCategory("backend").map((tech) => (
+                        <Badge
+                          key={tech.name}
+                          variant="secondary"
+                          className="bg-linear-to-r from-blue-900/60 to-blue-800/60 text-blue-200 hover:from-blue-800/80 hover:to-blue-700/80 transition-all duration-300 border border-blue-700/30"
+                        >
+                          {tech.name}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
               {/* Tools Card */}
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <Wrench className="w-5 h-5 text-slate-600" />
-                    <CardTitle>Outils</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {getTechnologiesByCategory("tools").map((tech) => (
-                      <Badge key={tech.name} variant="secondary">
-                        {tech.name}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                whileHover={{ y: -5 }}
+              >
+                <Card className="card-shine glow-border border-2 border-blue-800/50 hover:border-blue-600/50 transition-all duration-500 h-full bg-slate-900/50">
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <Wrench className="w-5 h-5 text-blue-400" />
+                      <CardTitle className="text-blue-100">Outils</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {getTechnologiesByCategory("tools").map((tech) => (
+                        <Badge
+                          key={tech.name}
+                          variant="secondary"
+                          className="bg-linear-to-r from-blue-900/60 to-blue-800/60 text-blue-200 hover:from-blue-800/80 hover:to-blue-700/80 transition-all duration-300 border border-blue-700/30"
+                        >
+                          {tech.name}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
               {/* Design Card */}
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <Palette className="w-5 h-5 text-slate-600" />
-                    <CardTitle>Design</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {getTechnologiesByCategory("design").map((tech) => (
-                      <Badge key={tech.name} variant="secondary">
-                        {tech.name}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                whileHover={{ y: -5 }}
+              >
+                <Card className="card-shine glow-border border-2 border-blue-800/50 hover:border-blue-600/50 transition-all duration-500 h-full bg-slate-900/50">
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <Palette className="w-5 h-5 text-blue-400" />
+                      <CardTitle className="text-blue-100">Design</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {getTechnologiesByCategory("design").map((tech) => (
+                        <Badge
+                          key={tech.name}
+                          variant="secondary"
+                          className="bg-linear-to-r from-blue-900/60 to-blue-800/60 text-blue-200 hover:from-blue-800/80 hover:to-blue-700/80 transition-all duration-300 border border-blue-700/30"
+                        >
+                          {tech.name}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </div>
           </motion.div>
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <section id="projects" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">Projets récents</h2>
-            <p className="text-slate-600 text-center mb-12 max-w-2xl mx-auto">Découvrez une sélection de mes projets les plus significatifs</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-blue-400">Projets récents</h2>
+            <p className="text-blue-300/80 text-center mb-12 max-w-2xl mx-auto">Découvrez une sélection de mes projets les plus significatifs</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               {projects.map((project, index) => (
@@ -154,9 +256,10 @@ export default function Home() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <section id="experience" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+          <div className="absolute top-10 right-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl" />
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">Expérience professionnelle</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-blue-400">Expérience professionnelle</h2>
 
             <div className="max-w-3xl mx-auto space-y-8">
               {experiences.map((exp, index) => (
@@ -166,25 +269,30 @@ export default function Home() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ x: 5, y: -5 }}
                 >
-                  <Card>
+                  <Card className="card-shine glow-border border-2 border-blue-800/50 hover:border-blue-600/50 transition-all duration-500 bg-slate-900/50">
                     <CardHeader>
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                         <div>
-                          <CardTitle className="text-xl">{exp.title}</CardTitle>
-                          <p className="text-slate-600 font-medium mt-1">{exp.company}</p>
+                          <CardTitle className="text-xl text-blue-100">{exp.title}</CardTitle>
+                          <p className="text-blue-200 font-medium mt-1">{exp.company}</p>
                         </div>
-                        <Badge variant="outline" className="w-fit">
+                        <Badge variant="outline" className="w-fit border-blue-600/50 text-blue-200 bg-linear-to-r from-blue-900/40 to-blue-800/40">
                           {exp.period}
                         </Badge>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-slate-600 mb-4">{exp.description}</p>
-                      <Separator className="my-4" />
+                      <p className="text-blue-200/80 mb-4">{exp.description}</p>
+                      <Separator className="my-4 bg-linear-to-r from-blue-800/50 to-blue-700/50" />
                       <div className="flex flex-wrap gap-2">
                         {exp.technologies.map((tech) => (
-                          <Badge key={tech} variant="secondary" className="text-xs">
+                          <Badge
+                            key={tech}
+                            variant="secondary"
+                            className="text-xs bg-linear-to-r from-blue-900/60 to-blue-800/60 text-blue-200 hover:from-blue-800/80 hover:to-blue-700/80 transition-all duration-300 border border-blue-700/30"
+                          >
                             {tech}
                           </Badge>
                         ))}
