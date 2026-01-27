@@ -11,7 +11,6 @@ import { experiences, getTechnologiesByCategory, personalInfo, projects } from "
 import { motion } from "framer-motion";
 import { Code2, Database, Download, Palette, Wrench } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -78,12 +77,12 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.5 }}
               whileHover={{ scale: 1.05 }}
             >
-              <Link href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer" download>
+              <a href={personalInfo.cvUrl} target="_blank" rel="noopener noreferrer" download>
                 <Button size="lg" className="gap-2 bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-900/50">
                   <Download className="w-4 h-4" />
                   Télécharger mon CV
                 </Button>
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
         </section>
