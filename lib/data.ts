@@ -50,7 +50,7 @@ export const personalInfo: PersonalInfo = {
   tagline: "Je crée des expériences web modernes et performantes",
   bio: "Développeur passionné avec 5+ ans d'expérience en création d'applications web. Spécialisé dans React, Next.js et TypeScript. J'aime transformer des idées complexes en interfaces élégantes et intuitives.",
   avatar: "/avatar.jpg", // Placeholder
-  cvUrl: "/cv.pdf",
+  cvUrl: "/cv-kylian-dupouy-peron.pdf",
   email: "kdperon@yahoo.com",
 };
 
